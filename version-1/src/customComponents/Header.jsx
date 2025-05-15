@@ -8,18 +8,18 @@ import { Link } from 'react-router-dom';
 export default function Header() {
     return (
         <>
-                <Link to="/">
+            <Link to="/">
                 <Heading size="4xl">Where in the world?</Heading>
-                </Link>
-                <Link to="/SavedCountries">
-                    <Button size="md">
-                        <Icon fontSize="2xl" color="pink.700">
-                            <HiHeart />
-                        </Icon>
-                        Saved Courntries
-                    </Button>
-                </Link>
-                <ColorModeButton />
-            </>
-            )
+            </Link>
+            <Link to="/SavedCountries">
+                <Button size="md">
+                    <Icon fontSize="2xl" color="pink.700">
+                        <HiHeart />
+                    </Icon>
+                    Saved Courntries
+                </Button>
+            </Link>
+            <ColorModeButton />
+        </>
+    )
 }

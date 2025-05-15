@@ -1,32 +1,35 @@
-import { useState } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { For, Stack } from "@chakra-ui/react";
+import CountryCard from "../customComponents/CountryCard"
 
 
 export default function savedCountries() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        country: '',
-    });
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    country: '',
+  });
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        console.log(name, value);
-        setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-      };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    console.log(name, value);
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
 
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        let dataObj = formData;
-        console.log(dataObj);
-        setFormData({ name: '', email: '', country: '' }); // Reset the form
-        //send dataObj to backend
-      };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let dataObj = formData;
+    console.log(dataObj);
+    setFormData({ name: '', email: '', country: '' }); // Reset the form
+    //send dataObj to backend
+  };
 
-    return (
-        <>
+  return (
+    <>
 
 
-            <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="name"></label>
         <input
           placeholder="Name"
@@ -54,12 +57,12 @@ export default function savedCountries() {
           value={formData.country}
           onChange={handleChange}
         />
-         <label htmlFor="bio">
-          
-          <textarea value={formData.bio} onChange={handleChange} placeholder="Bio"/>
-        </label> 
+        <label htmlFor="bio">
+
+          <textarea value={formData.bio} onChange={handleChange} placeholder="Bio" />
+        </label>
         <button type="submit">Submit</button>
       </form>
-        </>
-    )
+    </>
+  )
 }

@@ -21,8 +21,8 @@ export default function Home({ countries }) {
     console.log(name, value);
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     setUserFilteredCountries(countries.filter(country => {
-      return country.name.official.includes(...formData,search) ;
-  }))
+      return country.name.official.includes(...formData, search);
+    }))
   };
 
   const FormComponent = () => (
@@ -40,7 +40,7 @@ export default function Home({ countries }) {
         </NativeSelectField>
       </NativeSelectRoot>
       <FormLabel htmlFor="search">Search</FormLabel>
-      <Input type="text" id="search" name="search" placeholder="Search"  value={formData.search} onChange={handleChange} />
+      <Input type="text" id="search" name="search" placeholder="Search" value={formData.search} onChange={handleChange} />
     </FormControl>
   );
 
@@ -52,7 +52,7 @@ export default function Home({ countries }) {
     <Stack gap="4" direction="row" wrap="wrap">
       <For each={userFilteredCountries} >
         {(userFilteredCountry) => (
-          <CountryCard country={userFilteredCountry} />
+          <CountryCard country={userFilteredCountry} key={userFilteredCountry.name.official} />
         )}
       </For>
     </Stack>
