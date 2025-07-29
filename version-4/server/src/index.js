@@ -86,12 +86,12 @@ ON CONFLICT (id) DO UPDATE
 SET name = EXCLUDED.name;
   */
 
-async function updateOneCountryCount(updatedCountry) {
+async function updateOneCountryCount(countryToUpdate) {
   const result = await db.query(
-    "INSERT INTO country_counts (country_name, count) values (updatedCountry.country_name, count)ON CONFLICT (count) DO UPDATE SET count = EXCLUDED.country_name"
+   `INSERT INTO country_counts (country_name, count) VALUES ($1, 1) ON CONFLICT (country_name) DO UPDATE SET count = country_counts.count + 1 RETURNING count AS "newCount";`, [countryToUpdate.country_name]
   );
   console.log(result);
-  return result.rows;
+  return result.rows[0];
 }
 async function getAllSavedCountries() {
     const result = await db.query("SELECT * FROM saved_countries");
@@ -105,7 +105,7 @@ async function getAllSavedCountries() {
         [newSavedCountry.country_name]
       );
   }
-/*--------------------------------
+/*------------------update--------------
 API ENDPOINTS
 ---------------------------------*/
 
@@ -113,7 +113,6 @@ API ENDPOINTS
 
 app.get("/get-all-users", async (req, res) => {
     const allUsers = await getAllUsers();
-    // res.send(JSON.stringify(allAnimals));
     res.json(allUsers);
   });
 
@@ -134,9 +133,9 @@ app.get("/get-all-users", async (req, res) => {
   // POST /update-one-country-count
 
   app.post("/update-one-country-count", async (req, res) => {
-    const updatedCountry = req.body;
-    updateOneCountryCount(updatedCountry);
-    res.send("The animal was successfully updated!");
+    const countryToUpdate = req.body;
+    const updatedCountry = await updateOneCountryCount(countryToUpdate);
+    res.json(updatedCountry);
   });
 
   // GET /get-all-saved-countries

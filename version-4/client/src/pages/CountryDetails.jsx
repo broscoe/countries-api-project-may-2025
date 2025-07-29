@@ -23,7 +23,7 @@ export default function CountryDetails({ countries }) {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              
+                    "country_name": individualCountry
             }
             )
           })
