@@ -77,8 +77,22 @@ async function updateOneCountryCount(updatedCountry) {
           )
   }
 }
+  INSERT INTO director (id, name)
+VALUES
+    (2, 'robert'),
+    (5, 'sheila'),
+    (6, 'flora')
+ON CONFLICT (id) DO UPDATE
+SET name = EXCLUDED.name;
   */
 
+async function updateOneCountryCount(updatedCountry) {
+  const result = await db.query(
+    "INSERT INTO country_counts (country_name, count) values (updatedCountry.country_name, count)ON CONFLICT (count) DO UPDATE SET count = EXCLUDED.country_name"
+  );
+  console.log(result);
+  return result.rows;
+}
 async function getAllSavedCountries() {
     const result = await db.query("SELECT * FROM saved_countries");
     console.log(result);
