@@ -26,13 +26,18 @@ export default function CountryDetails({ countries }) {
                     "country_name": individualCountry
             }
             )
+          }).then(response => response.json())
+          .then(apiSavedCount => {
+            console.log(apiSavedCount, "country count Data")
+            setCount(apiSavedCount)
           })
+          .catch(error => setError('Error: ' + error.message));
     }
 
     useEffect(() => {
         const userSavedCountries = JSON.parse(localStorage.getItem("userSavedCountries")) || [];
         setSavedCountries(userSavedCountries);
-        getCount();
+        fetchCount();
         // sendCount();
         updateCount();
     }, []);
@@ -62,23 +67,31 @@ export default function CountryDetails({ countries }) {
 
 
          //if (!) return;
-        let userSavedCountries =  JSON.parse(localStorage.getItem("userSavedCountries"))
-           console.log(userSavedCountries,"userSavedCountries")
+        // let userSavedCountries =  JSON.parse(localStorage.getItem("userSavedCountries"))
+        //    console.log(userSavedCountries,"userSavedCountries")
 
-        let userSavedCountry = userSavedCountries.find(savedCountry => {
-            console.log(savedCountry.name.official)
-            return savedCountry.name.official === individualCountry
-        })
-        console.log(userSavedCountry, "user saved this country")
-        if (userSavedCountry === undefined) {
-            //push to local storage
-            const updatedSavedCountries = [...savedCountries, filteredCountry]; // Create a new array instead of modifying state directly
-            setSavedCountries(updatedSavedCountries);
-            localStorage.setItem("userSavedCountries", JSON.stringify(updatedSavedCountries));
-        }
+        // let userSavedCountry = userSavedCountries.find(savedCountry => {
+        //     console.log(savedCountry.name.official)
+        //     return savedCountry.name.official === individualCountry
+        // })
+        // console.log(userSavedCountry, "user saved this country")
+        // if (userSavedCountry === undefined) {
+        //     //push to local storage
+        //     const updatedSavedCountries = [...savedCountries, filteredCountry]; // Create a new array instead of modifying state directly
+        //     setSavedCountries(updatedSavedCountries);
+        //     localStorage.setItem("userSavedCountries", JSON.stringify(updatedSavedCountries));
+        // }
            
         //
-       
+        fetch('/save-one-country', {
+            //----tells the fetch that we are posting data to the api----
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                    "country_name": individualCountry
+            }
+            )
+          })
             
          
         // console.log(userSavedCountries, "userSavedCountries")
@@ -100,10 +113,10 @@ export default function CountryDetails({ countries }) {
         setCount(data);
       };
 
-    function sendCount () {
-        localStorage.setItem(`${individualCountry}Count`, JSON.stringify(count+1));
-         setCount(count+1);
-    }
+    // function sendCount () {/update-one-country-count
+    //     localStorage.setItem(`${individualCountry}Count`, JSON.stringify(count+1));
+    //      setCount(count+1);
+    // }
 
     console.log(filteredCountry, "filtered countries")
 

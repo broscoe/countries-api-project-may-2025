@@ -135,7 +135,7 @@ export default function savedCountries() {
     // setSavedCountries(userSavedCountries);
     retrieveUserData();
     retrieveUserCountryData();
-    if (apiSavedCountries) {filterAPIData();}
+    if (apiSavedCountries) {filterAPIData()};
   }, []);
 
 
