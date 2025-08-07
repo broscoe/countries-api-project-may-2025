@@ -5,11 +5,10 @@ BOILERPLATE CODE TO SET UP SERVER
 // Importing our Node modules
 import express from "express"; // The framework that lets us easily build a web server
 import pg from "pg"; // pg stands for PostgreSQL, for talking to the database
-import config from "./config.js"; // we need access to our database connection credentials
 
 // connect to our PostgreSQL database, or db for short
 const db = new pg.Pool({
-  connectionString: config.databaseUrl, // credentials to access the database — keep this private!
+  connectionString: process.env.DATABASE_URL, // credentials to access the database — keep this private!
   ssl: true, // we will use SSL encryption when connecting to the database
 });
 
