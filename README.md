@@ -1,82 +1,45 @@
-# 📝 Writing a README
+# 📝 Countries API Project
 
-A well-written README helps others (and your future self!) understand, use, and appreciate your project. Here's a quick guide to writing one.
-
-## 📌 What Is a README?
-
-A `README.md` is usually the **first** thing someone sees in your repo. It gives an **overview** of what your **project** is about, how to use it, and how it works.
-
-You spent hours on your project — spend at least 30 minutes writing a clear README.
-It's your chance to tell the world what your hard work is all about!
-
-## 🧹 Tips
-
-- Don't overthink it! Just explain your project clearly
-- Use headers, bullet points, and links to keep it easy to read
-- Update the README if your project changes
-
-## 🎨 Markdown Formatting Tips
-
-README files use **Markdown** (`.md`) to style content.
-
-### Common Markdown formatting:
-
-```markdown
-# H1 (Main title)
-## H2 (Section)
-### H3 (Subsection)
-
-**bold text**  
-_italic text_  
-`inline code`  
-
-- bullet points
-1. numbered lists
-
-[Link text](https://example.com)
-
-![Alt text for image](./images/image.png)
-```
-
-# Fill Out the Template Below ⬇️ 
-Once you're done filling out the template, paste it into your Github repo's main `README.md` file! 
-
----
-
-# 📝 Project Title
-
-Give your project a clear, simple name.
+[Link to the project repo](https://github.com/broscoe/countries-api-project-may-2025/tree/main)
 
 ## 📌 Description
 
-- What is this project and its purpose? 
+- What is this project and its purpose?
 - Why did you build it?
 
 ## 🚀 Live Site
 
-[View the Live Site](https://your-project.netlify.app)
+[View the Live Site](https://countries-version-5-2025.netlify.app/)
 
 ## 🖼️ Screenshots
 
-Copy & paste 1–2 images of your project here to show it off! 
+<img width="1275" height="902" alt="Screenshot 2025-08-11 at 3 26 58 PM" src="https://github.com/user-attachments/assets/b69e8018-56d3-4163-84a8-585ff2400be4" />
 
-To take a screenshot of a specific portion of the screen, press and hold `Command + Control + Shift + 4`, then drag the crosshair cursor to select the area. The screenshot will be automatically copied, so that you can paste it directly into this README.md file. 
+<img width="1346" height="952" alt="Screenshot 2025-08-11 at 3 27 50 PM" src="https://github.com/user-attachments/assets/fdb173e7-779c-47cf-be05-ea93d2bba4a7" />
 
 ## ✨ Features
 
-What are the features that you implemented in the app? For example, list the pages you built and what the user can do on those pages. 
+### Home Page
+The home page loads all of the countries from around the world listing their population, region, and capital. You can click on each card to get to the country details page
+### Country Details Page
+Each county has an expanded page where you can view the card in a larger format, see how many times that individual country card has been viewed, and click the heart button in order to add that country to the saved countries list
+
+### Saved Countries page
+The Saved Countries pages has a form that will submit user data to the database and a message that welcomes the most recent user. There is also an area that displays all of the cards from countries that have been saved to the database.
 
 ## 🛠️ Tech Stack
-
-List the technologies you used, including programming languages, libraries, frameworks, tools, and APIs (such as HTML, CSS, etc.) 
-
+| Component  | Language              | Framework | Deployment | Dev Tools               |
+| ---------- | --------------------- | --------- | ---------- | ----------------------- |
+| Frontend   | HTML, CSS, JavaScript | React     | Netlify    |                         |
+| Server/API | Node.js               | Express   | Render     | Postman for API testing |
+| Database   | PostgreSQL            |           | Neon       |                         |
 ## 💭 Reflections
 
-- What did you learn?
-- What are you proud of?
-- What was challenging?
-- Any future ideas for how you'd continue building the project?
+- This project was my first time building out a database, writing and testing API endpoints, and deploying a live server.
+- This project incorporated a lot of new technologies and deployment techniques So it was exciting to build comfort and familiarity with those things.
+- This project had one of the largest source trees that I have worked with, so at times it was hard to follow how data moved around the project
+- In the future I would like to add more info to the country cards, add search functionality, and log in credentials.
 
 ## 🙌 Credits
 
-Did anyone or anything help you? Shout out tutorials or teammates with links if possible. 
+I would like to thank my classmate Makeba for helping me trouble shoot, and my instructor Arianna for kindness, patience, and commitment to providing quality education.
