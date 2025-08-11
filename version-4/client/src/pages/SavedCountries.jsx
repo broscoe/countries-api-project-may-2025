@@ -4,13 +4,13 @@ import { Stack } from "@chakra-ui/react";
 import CountryCard from "../customComponents/CountryCard"
 
 
-export default function savedCountries() {
+export default function savedCountries({ countries }) {
   //add required props
   //----useState for the user----
   const [userData, setUserData] = useState(null)
 
   //----useState to save countries----
-  // const [SavedCountries, setSavedCountries] = useState(null)
+  //const [SavedCountries, setSavedCountries] = useState(null)
 
   //----useState to link the two apis----
   const [apiSavedCountries, setApiSavedCountries] = useState(null)
@@ -60,20 +60,6 @@ export default function savedCountries() {
     setFormData({ name: '', email: '', country_name: '', bio: '' });
   };
 
-  //-----------leaving this to make sure I have it for version 2 but the api end point for it below works
-  // useEffect(() => {
-  //   // if (localStorage.getItem("profile")) {
-  //   //   let profileInfo = JSON.parse(localStorage.getItem("profile"))
-  //   //   setUser(profileInfo.name)
-  //   // }
-  //   fetch('/api/get-newest-user', {
-  //     //tells the fetch that we are getting data from the api
-  //     method: 'GET',
-  //     headers: { "Content-Type": "application/json" },
-  //   }), []
-  // }
-  // )
-
   const retrieveUserData = () => {
     fetch('/api/get-newest-user', {
       //----tells the fetch that we are getting data from the api----
@@ -84,7 +70,6 @@ export default function savedCountries() {
         console.log(userApiData, "user Data")
         setUserData(userApiData)
       })
-      .catch(error => setError('Error: ' + error.message));
   }
 
   const retrieveUserCountryData = () => {
@@ -93,34 +78,32 @@ export default function savedCountries() {
       method: 'GET',
       headers: { "Content-Type": "application/json" },
     }).then(response => response.json())
-      .then(userSavedCountries => {
-        console.log(userSavedCountries, "user country Data")
-        setApiSavedCountries(userSavedCountries)
+      .then(retrievedUserCountries => {
+        let filteredCountries = filterAPIData(retrievedUserCountries)
+        console.log(filteredCountries, "user country Data")
+        setApiSavedCountries(filteredCountries)
       })
-      .catch(error => setError('Error: ' + error.message));
   }
 
-  const filterAPIData = () => {
+  const filterAPIData = (retrievedUserCountries) => {
 
-    //---- empty array to store the objects that pass the filter
-    const savedCountriesObjects = []
-    //----loop over each country from the instructor's api----
-    apiSavedCountries.forEach(apiCountry => {
+    //----loop over each country from my render api----
+    const filteredApiData = retrievedUserCountries.map(apiCountry => {
       //----assign each country a variable based on its country_name value----
-      const apiCountryName = apiCountry.country_name
-      //----find the array of country objects from the rest api ----
-      const filteredCountries = savedCountriesObjects.find(
-        //---- checks the name of the country in the country api against the name stored in the instructors api
-        (restfulCountryObject) => {
-          if (apiCountryName === restfulCountryObject.name.common) {
-            return true
-          } else {
-            return false
-          }
+      const apiCountryName = apiCountry.country_name;
+      //----find the country object from the rest api ----
+      const filteredCountry = countries.find(
+        //---- checks the name of the country in the country api against the name stored in the api
+        (country) => {
+          const countryCommonName = country.name.common;
+          const countryNameOfficial = country.name.official
+          return apiCountryName === countryCommonName || apiCountryName === countryNameOfficial;
         })
-        console.log(filteredCountries, "filtered countries")
-ƒ    });
 
+      console.log(filteredCountry, "filtered country");
+      return filteredCountry
+    });
+    return filteredApiData.filter(element => element !== null)
   }
   ///const = savedCountryName =
   // restCountryArray.filter((country) => {
@@ -131,14 +114,11 @@ export default function savedCountries() {
   // console.log(savedCountries, "savedCountries")
 
   useEffect(() => {
-    // const userSavedCountries = JSON.parse(localStorage.getItem("userSavedCountries"));
-    // setSavedCountries(userSavedCountries);
     retrieveUserData();
     retrieveUserCountryData();
-    if (apiSavedCountries) {filterAPIData()};
   }, []);
 
-
+  //console.log(apiSavedCountries, "api saved countries")
 
   return (
     <>
@@ -185,9 +165,10 @@ export default function savedCountries() {
         </form>
 
       </div>
+
       {/* div for saved countries ternary */}
       <div>
-        {savedCountries && savedCountries.length > 0 ? (<Stack gap="4" direction="row" wrap="wrap">
+        {apiSavedCountries && apiSavedCountries.length > 0 ? (<Stack gap="4" direction="row" wrap="wrap">
 
           {apiSavedCountries.map((apiSavedCountry) => {
             // console.log(savedCountry, "inloop")

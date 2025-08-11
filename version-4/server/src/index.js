@@ -86,13 +86,17 @@ ON CONFLICT (id) DO UPDATE
 SET name = EXCLUDED.name;
   */
 
+//helper function for update one country count
 async function updateOneCountryCount(countryToUpdate) {
   const result = await db.query(
    `INSERT INTO country_counts (country_name, count) VALUES ($1, 1) ON CONFLICT (country_name) DO UPDATE SET count = country_counts.count + 1 RETURNING count AS "newCount";`, [countryToUpdate.country_name]
   );
   console.log(result);
+  //maybe save result.row into a const
   return result.rows[0];
 }
+
+
 async function getAllSavedCountries() {
     const result = await db.query("SELECT * FROM saved_countries");
     console.log(result);
@@ -133,9 +137,9 @@ app.get("/get-all-users", async (req, res) => {
   // POST /update-one-country-count
 
   app.post("/update-one-country-count", async (req, res) => {
-    const countryToUpdate = req.body;
-    const updatedCountry = await updateOneCountryCount(countryToUpdate);
-    res.json(updatedCountry);
+    const countryCountToUpdate = req.body;
+    const updatedCountryCount = await updateOneCountryCount(countryCountToUpdate);
+    res.json(updatedCountryCount);
   });
 
   // GET /get-all-saved-countries
