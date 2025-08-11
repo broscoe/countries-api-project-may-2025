@@ -13,7 +13,7 @@ export default function CountryDetails({ countries }) {
     let { individualCountry } = useParams();
 
     const filteredCountry = countries.find(country => {
-        console.log(country.name.official);
+        //console.log(country.name.official);
         return country.name.official === individualCountry;
     });
 
@@ -47,7 +47,7 @@ export default function CountryDetails({ countries }) {
         localStorage.setItem(`${individualCountry}Count`, JSON.stringify(newCount));
     }
 
-    console.log(filteredCountry, "filtered countries");
+    //console.log(filteredCountry, "filtered countries");
 
 
     useEffect(() => {
