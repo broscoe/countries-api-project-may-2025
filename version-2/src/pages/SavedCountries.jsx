@@ -5,7 +5,7 @@ import CountryCard from "../customComponents/CountryCard"
 
 
 export default function savedCountries() {
-//add required props
+
   //useState for the user
   let [user, setUser] = useState("")
 
@@ -48,13 +48,10 @@ export default function savedCountries() {
       let profileInfo = JSON.parse(localStorage.getItem("profile"))
       setUser(profileInfo.name)
     }
-  }, []
-  )
-
-  useEffect(() => {
     const userSavedCountries = JSON.parse(localStorage.getItem("userSavedCountries"));
     setSavedCountries(userSavedCountries);
-  }, []);
+  }, []
+  )
 
   // console.log(savedCountries, "savedCountries")
 

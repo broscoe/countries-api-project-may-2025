@@ -13,75 +13,48 @@ export default function CountryDetails({ countries }) {
     let { individualCountry } = useParams();
 
     const filteredCountry = countries.find(country => {
-        console.log(country.name.official)
-        return country.name.official === individualCountry
-    })
+        console.log(country.name.official);
+        return country.name.official === individualCountry;
+    });
+
+        function handleSave() {
+        //gets saved countries from local storage and saves them into a variable
+        let userSavedCountries =  JSON.parse(localStorage.getItem("userSavedCountries")) || [];
+        
+        console.log(userSavedCountries,"userSavedCountries");
+
+           //returns the name of the country we are trying to save if it is in the saved countries list
+        let userCountryToSave = userSavedCountries.find(savedCountry => {
+            console.log(savedCountry.name.official);
+            return savedCountry.name.official === individualCountry;
+        });
+        console.log(userCountryToSave, "user saved this country");
+        // if the country we are trying to save is not in the list of countries already saved, it pushes that country to local storage
+        if (userCountryToSave === undefined) {
+            //add the current country to the array of saved countries
+            const updatedSavedCountries = [...userSavedCountries, filteredCountry]; 
+            //updates the saved country state with the new array
+            setSavedCountries(updatedSavedCountries);
+            //push to local storage
+            localStorage.setItem("userSavedCountries", JSON.stringify(updatedSavedCountries));
+        };
+    };
+        
+    function getCount () {
+        let loadedCount = JSON.parse(localStorage.getItem(`${individualCountry}Count` || 0));
+        let newCount = loadedCount + 1;
+        setCount(newCount);
+        localStorage.setItem(`${individualCountry}Count`, JSON.stringify(newCount));
+    }
+
+    console.log(filteredCountry, "filtered countries");
+
 
     useEffect(() => {
         const userSavedCountries = JSON.parse(localStorage.getItem("userSavedCountries")) || [];
         setSavedCountries(userSavedCountries);
         getCount();
     }, []);
-
-    // function handleSave() {
-    //     console.log(savedCountries.name.official.find(filteredCountry), "test find")
-        
-        //     const updatedSavedCountries = [...savedCountries, filteredCountry]; 
-        // setSavedCountries(updatedSavedCountries);
-        // localStorage.setItem("userSavedCountries", JSON.stringify(updatedSavedCountries));
-        // }
-        // console.log("clicked")
-
-        function handleSave() {
-        
-        //check local storage
-            //get array of objects from local storage
-            //compare filtered country to the array of objects in local storage with find()
-            //if returned country === filteredCountry then dont save
-        //else save the country to local storage
-        // saved item is in local storage
-        //country name official
-        // filteredCountry = countries.find(country => {
-        //     console.log(country.name.official)
-        //     return country.name.official === individualCountry
-        let userSavedCountries =  JSON.parse(localStorage.getItem("userSavedCountries")) || [];
-           console.log(userSavedCountries,"userSavedCountries")
-
-        let userCountryToSave = userSavedCountries.find(savedCountry => {
-            console.log(savedCountry.name.official)
-            return savedCountry.name.official === individualCountry
-        })
-        console.log(userCountryToSave, "user saved this country")
-        if (userCountryToSave === undefined) {
-            //push to local storage
-            const updatedSavedCountries = [...userSavedCountries, filteredCountry]; // Create a new array instead of modifying state directly
-            setSavedCountries(updatedSavedCountries);
-            localStorage.setItem("userSavedCountries", JSON.stringify(updatedSavedCountries));
-        }
-           
-        //
-       
-            
-         
-        // console.log(userSavedCountries, "userSavedCountries")
-    //    console.log(updatedSavedCountries, "userSavedCountries")
-    };
-        
-
-        
-
-
-    // };
-
-    function getCount () {
-        let loadedCount = JSON.parse(localStorage.getItem(`${individualCountry}Count` || 0))
-        let newCount = loadedCount + 1;
-        setCount(newCount);
-        localStorage.setItem(`${individualCountry}Count`, JSON.stringify(newCount));
-    }
-
-
-    console.log(filteredCountry, "filtered countries")
 
     return (
         <>
@@ -91,8 +64,6 @@ export default function CountryDetails({ countries }) {
             </Icon>
             <p>{count}</p>
             </CountryCard>
-            
-            
         </>
     )
 }
