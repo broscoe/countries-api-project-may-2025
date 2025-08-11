@@ -15,13 +15,12 @@ function App() {
 
   //api call to fetch the countries data
   const apiCall = () => {
-    fetch('https://restcountries.com/v3.1/all')
+    fetch('https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region')
       .then(response => response.json())
       .then(data => {
         console.log(data)
         setCountries(data)
       })
-      .catch(error => setError('Error: ' + error.message));
   }
 
   //useEffect to call the api
@@ -35,7 +34,6 @@ function App() {
 
   return (
     <>
-
       <div>
         <Header />
 
@@ -45,7 +43,6 @@ function App() {
           <Route path="/Country/:individualCountry" element={<CountryDetails countries={countries} />} />
         </Routes>
       </div>
-
     </>
   );
 }
