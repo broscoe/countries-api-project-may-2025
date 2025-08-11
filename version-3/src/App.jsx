@@ -22,7 +22,6 @@ function App() {
         console.log(data)
         setCountries(data)
       })
-      .catch(error => setError('Error: ' + error.message));
   }
 
   const userDataApiCall = () => {
@@ -36,7 +35,6 @@ function App() {
         console.log(userApiData)
         setUserData(userApiData)
       })
-      .catch(error => setError('Error: ' + error.message));
   }
   //useEffect to call the api
   useEffect(() => {

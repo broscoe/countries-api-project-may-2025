@@ -105,13 +105,6 @@ export default function savedCountries({ countries }) {
     });
     return filteredApiData.filter(element => element !== null)
   }
-  ///const = savedCountryName =
-  // restCountryArray.filter((country) => {
-  //   if (country_name ===country.name.common) {
-  //     return 
-  //   }
-  // })
-  // console.log(savedCountries, "savedCountries")
 
   useEffect(() => {
     retrieveUserData();

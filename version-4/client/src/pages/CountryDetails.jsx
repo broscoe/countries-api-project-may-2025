@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import CountryCard from "../customComponents/CountryCard"
 import { HiHeart } from "react-icons/hi";
-import { Button, Icon } from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/react";
 
 
 export default function CountryDetails({ countries }) {
@@ -34,9 +34,9 @@ export default function CountryDetails({ countries }) {
 
     const handleSave = () => {
 
-        //
+        
         fetch('/api/save-one-country', {
-            //----tells the fetch that we are posting data to the api----
+            //----tells the fetch that we are posting data to the render api----
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
