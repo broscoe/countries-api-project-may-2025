@@ -106,7 +106,7 @@ export default function savedCountries() {
           
           {savedCountries.map((savedCountry) => {
               // console.log(savedCountry, "inloop")
-              return (<CountryCard country={savedCountry} />
+              return (<CountryCard country={savedCountry} key={country.cca3} />
               )
             })}
         </Stack>):

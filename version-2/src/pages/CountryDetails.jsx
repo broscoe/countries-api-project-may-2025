@@ -21,14 +21,14 @@ export default function CountryDetails({ countries }) {
         //gets saved countries from local storage and saves them into a variable
         let userSavedCountries =  JSON.parse(localStorage.getItem("userSavedCountries")) || [];
         
-        console.log(userSavedCountries,"userSavedCountries");
+        //console.log(userSavedCountries,"userSavedCountries");
 
            //returns the name of the country we are trying to save if it is in the saved countries list
         let userCountryToSave = userSavedCountries.find(savedCountry => {
-            console.log(savedCountry.name.official);
+            //console.log(savedCountry.name.official);
             return savedCountry.name.official === individualCountry;
         });
-        console.log(userCountryToSave, "user saved this country");
+        //console.log(userCountryToSave, "user saved this country");
         // if the country we are trying to save is not in the list of countries already saved, it pushes that country to local storage
         if (userCountryToSave === undefined) {
             //add the current country to the array of saved countries
