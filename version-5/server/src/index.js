@@ -51,39 +51,6 @@ async function addOneUser(newUser) {
       [newUser.name, newUser.country_name, newUser.email, newUser.bio]
     );
   }
-  /*
-  // helper to check what countries are in country count
-  async function getCountryCountCountries() {
-    const country_count = await db.query("SELECT * FROM country_count"
-    );
-    console.log(result);
-    return result.rows;
-  }
-  // Helper function for /update-one-country-count
-
-
-async function updateOneCountryCount(updatedCountry) {
-    getCountryCountCountries()
-    if (updatedCountry === country_count.country_name) {
-        await db.query(
-      "UPDATE country_counts SET count = count + 1 where country_name = '$1'"
-      [updatedCountry.country_name]
-    );
-    } else {
-        await db.query(
-            "INSERT INTO country_counts (country_name, count) VALUES ($1, $2)",
-            [country_count.country_name, country_count.count]
-          )
-  }
-}
-  INSERT INTO director (id, name)
-VALUES
-    (2, 'robert'),
-    (5, 'sheila'),
-    (6, 'flora')
-ON CONFLICT (id) DO UPDATE
-SET name = EXCLUDED.name;
-  */
 
 async function updateOneCountryCount(countryToUpdate) {
   const result = await db.query(
@@ -100,7 +67,7 @@ async function getAllSavedCountries() {
 
   async function addOneSavedCountry(newSavedCountry) {
     await db.query(
-        "INSERT INTO saved_countries (country_name) VALUES ($1)",
+        "INSERT INTO saved_countries (country_name) VALUES ($1) ON CONFLICT do nothing",
         [newSavedCountry.country_name]
       );
   }

@@ -26,5 +26,4 @@ export default function CountryCard({ country, children }) {
             </Card.Root>}
         </>
     )
-
 }

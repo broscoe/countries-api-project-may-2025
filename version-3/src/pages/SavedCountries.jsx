@@ -29,14 +29,13 @@ export default function savedCountries({ countries }) {
   const handleSubmit = (e) => {
 
     e.preventDefault();
-    let dataObj = formData;
     // console.log(dataObj);
     // console.log(JSON.stringify(formData))
 
     //----send dataObj to backend----
 
     //----checks the data that is going to be sent to api----
-    console.log(formData, "in submit")
+    //console.log(formData, "in submit")
 
     //----fetch to send the data to the api----****
     fetch('/api/add-one-user', {
@@ -51,7 +50,7 @@ export default function savedCountries({ countries }) {
       }
       )
     }).then(() => {
-      console.log("pushed form data to backend")
+      //console.log("pushed form data to backend")
     })
     // Reset the form
     setFormData({ name: '', email: '', country_name: '', bio: '' });
@@ -64,7 +63,7 @@ export default function savedCountries({ countries }) {
       headers: { "Content-Type": "application/json" },
     }).then(response => response.json())
       .then(userApiData => {
-        console.log(userApiData, "user Data")
+        //console.log(userApiData, "user Data")
         setUserData(userApiData)
       })
   }
@@ -77,7 +76,7 @@ export default function savedCountries({ countries }) {
     }).then(response => response.json())
       .then(retrievedUserCountries => {
         let filteredCountries = filterAPIData(retrievedUserCountries)
-        console.log(filteredCountries, "user country Data")
+        //console.log(filteredCountries, "user country Data")
         setApiSavedCountries(filteredCountries)
       })
   }
@@ -97,7 +96,7 @@ export default function savedCountries({ countries }) {
           return apiCountryName === countryCommonName || apiCountryName === countryNameOfficial;
         })
 
-      console.log(filteredCountry, "filtered country");
+      //console.log(filteredCountry, "filtered country");
       return filteredCountry
     });
     return filteredApiData.filter(element => element !== null)

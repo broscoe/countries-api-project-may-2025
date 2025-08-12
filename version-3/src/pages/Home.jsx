@@ -13,9 +13,6 @@ export default function Home({ countries }) {
 
   return <>
 
-    
-  
-
     <Stack gap="4" direction="row" wrap="wrap">
       <For each={userFilteredCountries} >
         {(userFilteredCountry) => (

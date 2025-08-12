@@ -7,10 +7,8 @@ import CountryDetails from './pages/CountryDetails';
 import SavedCountries from './pages/SavedCountries';
 import Header from "./customComponents/Header.jsx";
 
-
-
 function App() {
-  //use state to store the countries data
+  //use state to store the countries and user data
   const [countries, setCountries] = useState([]);
   const [user, setUserData] = useState(null)
 
@@ -19,7 +17,7 @@ function App() {
     fetch('https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region')
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        //console.log(data)
         setCountries(data)
       })
   }
@@ -32,33 +30,27 @@ function App() {
     })
       .then(response => response.json())
       .then(userApiData => {
-        console.log(userApiData)
+        //console.log(userApiData)
         setUserData(userApiData)
       })
   }
+  
   //useEffect to call the api
   useEffect(() => {
     apiCall();
     userDataApiCall();
   }, []);
 
-
-
-
-
   return (
     <>
-
       <div>
         <Header />
-
         <Routes>
           <Route path="/" element={<Home countries={countries} />} />
           <Route path="/SavedCountries" element={<SavedCountries countries={countries}  user={user}/>} />
           <Route path="/Country/:individualCountry" element={<CountryDetails countries={countries} />} />
         </Routes>
       </div>
-
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { For, Stack, Input } from "@chakra-ui/react";
+import { For, Stack } from "@chakra-ui/react";
 import CountryCard from "../customComponents/CountryCard";
 import { useEffect, useState } from 'react';
 
@@ -12,9 +12,6 @@ export default function Home({ countries }) {
   }, [countries]);
 
   return <>
-
-    
-  
 
     <Stack gap="4" direction="row" wrap="wrap">
       <For each={userFilteredCountries} >
