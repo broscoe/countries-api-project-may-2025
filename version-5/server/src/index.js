@@ -31,7 +31,7 @@ HELPER FUNCTIONS
 
 async function getAllUsers() {
     const result = await db.query("SELECT * FROM users ORDER BY user_id ASC");
-    console.log(result);
+    //console.log(result);
     return result.rows;
   }
 
@@ -39,7 +39,7 @@ async function getAllUsers() {
 
   async function getNewestUser() {
     const result = await db.query("SELECT * FROM users ORDER BY user_id DESC limit 1");
-    console.log(result);
+    //console.log(result);
     return result.rows;
   }
 
@@ -56,12 +56,12 @@ async function updateOneCountryCount(countryToUpdate) {
   const result = await db.query(
    `INSERT INTO country_counts (country_name, count) VALUES ($1, 1) ON CONFLICT (country_name) DO UPDATE SET count = country_counts.count + 1 RETURNING count AS "newCount";`, [countryToUpdate.country_name]
   );
-  console.log(result);
+  //console.log(result);
   return result.rows[0];
 }
 async function getAllSavedCountries() {
     const result = await db.query("SELECT * FROM saved_countries");
-    console.log(result);
+    //console.log(result);
     return result.rows;
   }
 
