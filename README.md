@@ -4,8 +4,8 @@
 
 ## 📌 Description
 
-- What is this project and its purpose?
-- Why did you build it?
+- This Project allows users to see all of the countries and their flags, by clicking on them more information is available and the ability to add the country to the saved countries list. Seperately, there is a page where the user can subit a form about themself and view all of the countries that have been saved.
+- I built this project to work on developing my fullstack skills, building a databse, API, and integrating an external API, and configuring them all to work together.
 
 ## 🚀 Live Site
 
@@ -13,9 +13,11 @@
 
 ## 🖼️ Screenshots
 
-<img width="1275" height="902" alt="Screenshot 2025-08-11 at 3 26 58 PM" src="https://github.com/user-attachments/assets/b69e8018-56d3-4163-84a8-585ff2400be4" />
+### Home Page
+<img width="1275" height="902" alt="Screenshot of the home page" src="https://github.com/user-attachments/assets/b69e8018-56d3-4163-84a8-585ff2400be4" />
 
-<img width="1346" height="952" alt="Screenshot 2025-08-11 at 3 27 50 PM" src="https://github.com/user-attachments/assets/fdb173e7-779c-47cf-be05-ea93d2bba4a7" />
+### Saved Countries Page
+<img width="1346" height="952" alt="Screenshot of the saved countries page" src="https://github.com/user-attachments/assets/fdb173e7-779c-47cf-be05-ea93d2bba4a7" />
 
 ## ✨ Features
 
