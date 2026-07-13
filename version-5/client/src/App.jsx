@@ -14,7 +14,7 @@ function App() {
 
   //api call to fetch the countries data
   const apiCall = () => {
-    fetch('https://restcountries.com/v3.1/all?fields=name,flags,population,capital,region')
+    fetch('https://restcountries.com/v5/all?fields=name,flags,population,capital,region')
       .then(response => response.json())
       .then(data => {
         //console.log(data)
