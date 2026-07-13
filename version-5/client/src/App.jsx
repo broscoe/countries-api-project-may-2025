@@ -14,14 +14,17 @@ function App() {
 
   //api call to fetch the countries data
   const apiCall = () => {
-    fetch('https://restcountries.com/v5/all?fields=name,flags,population,capital,region')
+    fetch(
+  'https://api.restcountries.com/countries/v5',
+  { headers: { 'Authorization': 'Bearer process.env.Countries_API_KEY' } }
+)
       .then(response => response.json())
       .then(data => {
         //console.log(data)
         setCountries(data)
       })
   }
-
+  
   const userDataApiCall = () => {
     fetch('/api/get-newest-user', {
       //tells the fetch that we are getting data from the api
