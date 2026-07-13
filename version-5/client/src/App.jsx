@@ -16,7 +16,7 @@ function App() {
   const apiCall = () => {
     fetch(
   'https://api.restcountries.com/countries/v5',
-  { headers: { 'Authorization': 'Bearer {process.env.Countries_API_KEY}' } }
+  { headers: { 'Authorization': 'Bearer ${process.env.Countries_API_KEY}' } }
 )
       .then(response => response.json())
       .then(data => {
